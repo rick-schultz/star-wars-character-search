@@ -8,11 +8,17 @@ import { normalizeText } from '@/utils';
 const search = ref('');
 const results = ref<Character[]>([]);
 const isLoading = ref(true);
+const error = ref('');
 
 onMounted(async () => {
-  const response = await characterService.getCharacters();
-  results.value = response.results;
-  isLoading.value = false;
+  try {
+    const response = await characterService.getCharacters();
+    results.value = response.results;
+    isLoading.value = false;
+  } catch (err) {
+    error.value = err.message;
+    isLoading.value = false;
+  }
 });
 
 const filteredResults = computed(() => {
@@ -38,8 +44,21 @@ const filteredResults = computed(() => {
         class="w-full max-w-md px-4 py-3 border-2 border-gray-200 rounded-lg text-base transition-colors duration-200 focus:outline-none focus:border-emerald-500 disabled:bg-gray-100 disabled:cursor-not-allowed" />
     </div>
 
+    <div v-if="isLoading" class="text-center py-8 text-gray-600">
+      Loading...
+    </div>
+
+    <div v-else-if="error" class="text-center py-8 text-red-600">
+      {{ error }}
+    </div>
+
+    <div v-else-if="filteredResults.length === 0" class="text-center py-8 text-gray-600">
+      No characters found
+    </div>
+
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      <Card v-for="character in filteredResults" :key="character.name" :character="character" />
+      <Card v-if="filteredResults.length > 0" v-for="character in filteredResults" :key="character.name"
+        :character="character" />
     </div>
   </div>
 </template>
