@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from '@/constants/api';
-import type { ApiResponse } from '@/types/character';
+import type { ApiResponse } from '@/types';
 
 export const characterService = {
   async getCharacters(page: number = 1, search?: string): Promise<ApiResponse> {
