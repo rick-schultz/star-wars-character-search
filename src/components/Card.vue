@@ -43,19 +43,19 @@ const props = defineProps<{
 				</div>
 
 				<div class="flex flex-wrap gap-2 mt-4">
-					<div class="p-2 rounded-md text-center bg-gray-50">
+					<div class="p-2 rounded-md text-center bg-gray-50 shadow-md">
 						<span
 							class="text-xs uppercase tracking-wider text-gray-600 font-semibold block whitespace-nowrap">Hair</span>
 						<p class="text-sm text-slate-800 whitespace-nowrap">{{ formatAttribute(props.character.hair_color) }}</p>
 					</div>
 
-					<div class="p-2 rounded-md text-center bg-gray-50">
+					<div class="p-2 rounded-md text-center bg-gray-50 shadow-md">
 						<span
 							class="text-xs uppercase tracking-wider text-gray-600 font-semibold block whitespace-nowrap">Eyes</span>
 						<p class="text-sm text-slate-800 whitespace-nowrap">{{ formatAttribute(props.character.eye_color) }}</p>
 					</div>
 
-					<div class="p-2 rounded-md text-center bg-gray-50">
+					<div class="p-2 rounded-md text-center bg-gray-50 shadow-md">
 						<span
 							class="text-xs uppercase tracking-wider text-gray-600 font-semibold block whitespace-nowrap">Skin</span>
 						<p class="text-sm text-slate-800 whitespace-nowrap">{{ formatAttribute(props.character.skin_color) }}</p>
